@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import { type } from "os";
+import { Link } from "react-router-dom";
 import { brotliDecompress } from "zlib";
 
 export default function Navbar() {
@@ -24,7 +27,39 @@ export default function Navbar() {
         {/* 4. text in span
             -   large text */}
         <span className=" text-lg">My App</span>
+        {/* 5.  div for rest w flex */}
+        <div className=" flex">
+          {/* 6.  Toggle button */}
+          <ThemeToggleButton />
+          {/* 7.  Nav item to breate button likes */}
+          <NavItem to="/tasks" label="Task Board" />
+        </div>
       </div>
     </nav>
   );
+
+  // 8. prop types
+  type NavItemProps = {
+    to: string;
+    label: string;
+  };
+}
+
+// 7. NavItem fxn
+function NavItem({ to, label }: NavItemProps) {
+  return (
+    <div>
+      {/* Button component from UI - use asChild to make Link be passed to Button */}
+      {/* add ghost varient for light w hover (see button.tsx varients) */}
+      <Button asChild variant="ghost">
+        {/* props from typing */}
+        <Link to={to}>{label}</Link>
+      </Button>
+    </div>
+  );
+}
+
+// 6. function for light/dark toggle
+function ThemeToggleButton() {
+  return <h1>Hi</h1>;
 }

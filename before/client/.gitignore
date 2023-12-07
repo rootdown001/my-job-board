@@ -11,8 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-INSTRUCTIONS.md
-WALKTHROUGH.md
+
 
 # Editor directories and files
 .vscode/*
@@ -24,4 +23,5 @@ WALKTHROUGH.md
 *.njsproj
 *.sln
 *.sw?
-
+INSTRUCTIONS.md
+WALKTHROUGH.md
