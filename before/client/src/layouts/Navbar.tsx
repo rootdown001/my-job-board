@@ -1,4 +1,11 @@
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Moon, Sun } from "lucide-react";
 import { type } from "os";
 import { Link } from "react-router-dom";
 import { brotliDecompress } from "zlib";
@@ -61,5 +68,31 @@ function NavItem({ to, label }: NavItemProps) {
 
 // 6. function for light/dark toggle
 function ThemeToggleButton() {
-  return <h1>Hi</h1>;
+  return (
+    <>
+      {/* Bring in DropDownMenu from components -examine in other places */}
+      {/* Import them from COMPONENTS */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className=" data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-slate-800"
+          >
+            {/* Import Sun & Moon from lucid-react */}
+            {/* in light mode, scale 100 / in dark mode, 0 */}
+            <Sun className=" h-5 w-5 scale-100 dark:scale-0 transition-transform" />
+            {/* absolute positions Moon next to closest "positioned" component - there is none - so on top of sun */}
+            {/* in light mode, scale 0 (so invisible) */}
+            <Moon className=" absolute h-5 w-5  scale-0 dark:scale-100 transition-transform" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          <DropdownMenuItem>Light</DropdownMenuItem>
+          <DropdownMenuItem>Dark</DropdownMenuItem>
+          <DropdownMenuItem>System</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
+  );
 }
