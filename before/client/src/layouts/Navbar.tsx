@@ -37,13 +37,13 @@ export default function Navbar() {
       </div>
     </nav>
   );
-
-  // 8. prop types
-  type NavItemProps = {
-    to: string;
-    label: string;
-  };
 }
+
+// 8. prop types
+type NavItemProps = {
+  to: string;
+  label: string;
+};
 
 // 7. NavItem fxn
 function NavItem({ to, label }: NavItemProps) {
