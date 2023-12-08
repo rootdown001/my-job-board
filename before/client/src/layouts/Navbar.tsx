@@ -77,6 +77,7 @@ function ThemeToggleButton() {
           <Button
             variant="ghost"
             size="sm"
+            // classes below keep highlight around button when open
             className=" data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-slate-800"
           >
             {/* Import Sun & Moon from lucid-react */}
@@ -87,7 +88,8 @@ function ThemeToggleButton() {
             <Moon className=" absolute h-5 w-5  scale-0 dark:scale-100 transition-transform" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
+        {/* change align to "end" so dropdown on left hand side */}
+        <DropdownMenuContent align="end">
           <DropdownMenuItem>Light</DropdownMenuItem>
           <DropdownMenuItem>Dark</DropdownMenuItem>
           <DropdownMenuItem>System</DropdownMenuItem>
