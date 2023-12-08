@@ -1,10 +1,12 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "./Navbar";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
 
 export function RootLayout() {
   return (
-    <>
+    // wrap application in ThemeProvider
+    <ThemeProvider>
       <div className="flex flex-col min-h-screen">
         {/* Import Navbar before div with Outlet */}
         <Navbar />
@@ -17,6 +19,6 @@ export function RootLayout() {
       </div>
       <ScrollRestoration />
       <Toaster />
-    </>
+    </ThemeProvider>
   );
 }

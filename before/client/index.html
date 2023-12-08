@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Task Board</title>
     <script>
-      const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
+      // imedietly set theme from local storage
 
-      document.documentElement.classList.toggle("dark", theme === "dark")
+      // get theme from local storage
+      // will use this as theme UNLESS storage says set to system
+      let theme = JSON.parse(localStorage.getItem("THEME"));
+      console.log("🚀 ~ file: index.html:14 ~ theme:", theme);
+
+      // if local storage says theme is system, set theme to what system theme actually is
+      if (theme === "system") {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      // set document theme to dark if theme is dark
+      document.documentElement.classList.toggle("dark", theme === "dark");
     </script>
   </head>
   <body class="dark:bg-slate-950 bg:white text-slate-900 dark:text-slate-100">
