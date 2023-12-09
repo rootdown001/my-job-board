@@ -1,3 +1,4 @@
+import { THEME_OPTIONS } from "@/constants/constants";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { ReactNode, createContext } from "react";
 
@@ -5,7 +6,9 @@ import { ReactNode, createContext } from "react";
 // CODEGPT "as const assertion is used to infer the narrowest possible
 // type for the array, making each element a literal type instead of a string type."
 //  Export to use other places
-export const THEME_OPTIONS = ["light", "dark", "system"] as const;
+
+// then moved to constans.ts & import above
+// export const THEME_OPTIONS = ["light", "dark", "system"] as const;
 
 // Define Theme type
 //  so Theme is type of THEME_OPTIONS and [number] is index type query

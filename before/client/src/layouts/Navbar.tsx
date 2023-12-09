@@ -5,9 +5,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { THEME_OPTIONS } from "@/contexts/ThemeProvider";
+import { THEME_OPTIONS } from "@/constants/constants";
+
 import useTheme from "@/hooks/useTheme";
-import { Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { type } from "os";
 import { Link } from "react-router-dom";
 import { brotliDecompress } from "zlib";
@@ -40,8 +41,36 @@ export default function Navbar() {
         <div className=" flex">
           {/* 6.  Toggle button */}
           <ThemeToggleButton />
-          {/* 7.  Nav item to breate button likes */}
-          <NavItem to="/tasks" label="Task Board" />
+          {/* wrap NavItem in div - className = " sm:flex" 
+            - will be hidden unless screen size about small - then flex*/}
+          <div className="hidden sm:flex">
+            {/* 7.  Nav item to breate button likes */}
+            <NavItem to="/tasks" label="Task Board" />
+          </div>
+          {/* menu item & dropdown (for mobile) */}
+          <DropdownMenu>
+            {/* hidden if larger than small */}
+            <DropdownMenuTrigger asChild className="flex sm:hidden">
+              <Button
+                variant="ghost"
+                // size icon bc menu is icon
+                size="icon"
+                className=" data-[state=open]:bg-slate-100 dark:data-[state=open]:bg-slate-800"
+              >
+                {/* add Menu, dropdown icon */}
+                <Menu className="w-5 h-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            {/* dropdown menu content */}
+            {/* align end to dropdown alighns with end of menu icon */}
+            <DropdownMenuContent align="end">
+              {/* item in dropdown menu */}
+              <DropdownMenuItem asChild>
+                {/* using Link  */}
+                <Link to="/tasks">Task Board</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </nav>
@@ -71,7 +100,6 @@ function NavItem({ to, label }: NavItemProps) {
 // 6. function for light/dark toggle
 function ThemeToggleButton() {
   // Bring in setTheme from useTheme custom hook
-  const { setTheme } = useTheme();
 
   return (
     <>
